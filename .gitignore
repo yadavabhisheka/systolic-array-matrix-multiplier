@@ -1,0 +1,25 @@
+# ---- C++ build output (CMake, anywhere in the repo) ----
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# ---- Compiled binaries / object files ----
+*.exe
+*.o
+*.obj
+*.out
+
+# ---- Python (for your pyhton implementation folder, later use) ----
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# ---- Editor / OS junk ----
+.vscode/
+*.swp
+Thumbs.db
+.DS_Store
