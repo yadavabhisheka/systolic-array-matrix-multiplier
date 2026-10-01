@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520" viewBox="0 0 1100 520">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2864a5"/></marker><marker id="carrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#9a5b00"/></marker></defs>
+<style>
+.title{font: bold 24px Arial,sans-serif;fill:#172b4d} .heading{font:bold 19px Arial,sans-serif;fill:#172b4d}
+.label{font:bold 15px Arial,sans-serif;fill:#172b4d} .small{font:12px Arial,sans-serif;fill:#334155}
+.block{fill:#fff;stroke:#52749b;stroke-width:2} .ps{fill:#edf5ff;stroke:#6d91bd;stroke-width:2}
+.pl{fill:#f0f8f1;stroke:#6c9c79;stroke-width:2} .dataArrow{fill:none;stroke:#2864a5;stroke-width:2.5;marker-end:url(#arrow)}
+.controlArrow{fill:none;stroke:#9a5b00;stroke-width:2.5;marker-end:url(#carrow)} .header{fill:#dce8f5;stroke:#9aaec4}
+.cell{fill:#fff;stroke:#b8c4d1}
+</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+
+<text x="550" y="35" class="title" text-anchor="middle">Cycle Schedule — Fill After Architecture Review</text>
+<text x="550" y="65" class="small" text-anchor="middle">Do not use this placeholder as a timing specification.</text>
+<rect x="100" y="120" width="100" height="48" class="header"/>
+<text x="150.0" y="150" class="label" text-anchor="middle">Cycle</text>
+<rect x="200" y="120" width="150" height="48" class="header"/>
+<text x="275.0" y="150" class="label" text-anchor="middle">PE(0,0)</text>
+<rect x="350" y="120" width="150" height="48" class="header"/>
+<text x="425.0" y="150" class="label" text-anchor="middle">PE(0,1)</text>
+<rect x="500" y="120" width="150" height="48" class="header"/>
+<text x="575.0" y="150" class="label" text-anchor="middle">PE(1,0)</text>
+<rect x="650" y="120" width="100" height="48" class="header"/>
+<text x="700.0" y="150" class="label" text-anchor="middle">...</text>
+<rect x="750" y="120" width="200" height="48" class="header"/>
+<text x="850.0" y="150" class="label" text-anchor="middle">Output/valid</text>
+<rect x="100" y="168" width="100" height="48" class="cell"/>
+<rect x="200" y="168" width="150" height="48" class="cell"/>
+<rect x="350" y="168" width="150" height="48" class="cell"/>
+<rect x="500" y="168" width="150" height="48" class="cell"/>
+<rect x="650" y="168" width="100" height="48" class="cell"/>
+<rect x="750" y="168" width="200" height="48" class="cell"/>
+<rect x="100" y="216" width="100" height="48" class="cell"/>
+<rect x="200" y="216" width="150" height="48" class="cell"/>
+<rect x="350" y="216" width="150" height="48" class="cell"/>
+<rect x="500" y="216" width="150" height="48" class="cell"/>
+<rect x="650" y="216" width="100" height="48" class="cell"/>
+<rect x="750" y="216" width="200" height="48" class="cell"/>
+<rect x="100" y="264" width="100" height="48" class="cell"/>
+<rect x="200" y="264" width="150" height="48" class="cell"/>
+<rect x="350" y="264" width="150" height="48" class="cell"/>
+<rect x="500" y="264" width="150" height="48" class="cell"/>
+<rect x="650" y="264" width="100" height="48" class="cell"/>
+<rect x="750" y="264" width="200" height="48" class="cell"/>
+<rect x="100" y="312" width="100" height="48" class="cell"/>
+<rect x="200" y="312" width="150" height="48" class="cell"/>
+<rect x="350" y="312" width="150" height="48" class="cell"/>
+<rect x="500" y="312" width="150" height="48" class="cell"/>
+<rect x="650" y="312" width="100" height="48" class="cell"/>
+<rect x="750" y="312" width="200" height="48" class="cell"/>
+<rect x="100" y="360" width="100" height="48" class="cell"/>
+<rect x="200" y="360" width="150" height="48" class="cell"/>
+<rect x="350" y="360" width="150" height="48" class="cell"/>
+<rect x="500" y="360" width="150" height="48" class="cell"/>
+<rect x="650" y="360" width="100" height="48" class="cell"/>
+<rect x="750" y="360" width="200" height="48" class="cell"/>
+<rect x="100" y="408" width="100" height="48" class="cell"/>
+<rect x="200" y="408" width="150" height="48" class="cell"/>
+<rect x="350" y="408" width="150" height="48" class="cell"/>
+<rect x="500" y="408" width="150" height="48" class="cell"/>
+<rect x="650" y="408" width="100" height="48" class="cell"/>
+<rect x="750" y="408" width="200" height="48" class="cell"/>
+<text x="550" y="475" class="small" text-anchor="middle">Populate after defining weight load, input injection, PE latency, valid propagation, and drain cycles.</text>
+</svg>

@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="720" viewBox="0 0 1000 720">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2864a5"/></marker><marker id="carrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#9a5b00"/></marker></defs>
+<style>
+.title{font: bold 24px Arial,sans-serif;fill:#172b4d} .heading{font:bold 19px Arial,sans-serif;fill:#172b4d}
+.label{font:bold 15px Arial,sans-serif;fill:#172b4d} .small{font:12px Arial,sans-serif;fill:#334155}
+.block{fill:#fff;stroke:#52749b;stroke-width:2} .ps{fill:#edf5ff;stroke:#6d91bd;stroke-width:2}
+.pl{fill:#f0f8f1;stroke:#6c9c79;stroke-width:2} .dataArrow{fill:none;stroke:#2864a5;stroke-width:2.5;marker-end:url(#arrow)}
+.controlArrow{fill:none;stroke:#9a5b00;stroke-width:2.5;marker-end:url(#carrow)} .header{fill:#dce8f5;stroke:#9aaec4}
+.cell{fill:#fff;stroke:#b8c4d1}
+</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+
+<text x="500" y="35" class="title" text-anchor="middle">4×4 Systolic Array — Connectivity Template</text>
+<text x="500" y="65" class="small" text-anchor="middle">16 PEs; arrows are placeholders until the dataflow schedule is finalized</text>
+<rect x="300" y="125" width="95" height="95" rx="10" class="block"/>
+<text x="347.5" y="160" class="label" text-anchor="middle">PE(0,0)</text>
+<text x="347.5" y="183" class="small" text-anchor="middle">weight</text>
+<text x="347.5" y="201" class="small" text-anchor="middle">register</text>
+<rect x="413" y="125" width="95" height="95" rx="10" class="block"/>
+<text x="460.5" y="160" class="label" text-anchor="middle">PE(0,1)</text>
+<text x="460.5" y="183" class="small" text-anchor="middle">weight</text>
+<text x="460.5" y="201" class="small" text-anchor="middle">register</text>
+<rect x="526" y="125" width="95" height="95" rx="10" class="block"/>
+<text x="573.5" y="160" class="label" text-anchor="middle">PE(0,2)</text>
+<text x="573.5" y="183" class="small" text-anchor="middle">weight</text>
+<text x="573.5" y="201" class="small" text-anchor="middle">register</text>
+<rect x="639" y="125" width="95" height="95" rx="10" class="block"/>
+<text x="686.5" y="160" class="label" text-anchor="middle">PE(0,3)</text>
+<text x="686.5" y="183" class="small" text-anchor="middle">weight</text>
+<text x="686.5" y="201" class="small" text-anchor="middle">register</text>
+<rect x="300" y="238" width="95" height="95" rx="10" class="block"/>
+<text x="347.5" y="273" class="label" text-anchor="middle">PE(1,0)</text>
+<text x="347.5" y="296" class="small" text-anchor="middle">weight</text>
+<text x="347.5" y="314" class="small" text-anchor="middle">register</text>
+<rect x="413" y="238" width="95" height="95" rx="10" class="block"/>
+<text x="460.5" y="273" class="label" text-anchor="middle">PE(1,1)</text>
+<text x="460.5" y="296" class="small" text-anchor="middle">weight</text>
+<text x="460.5" y="314" class="small" text-anchor="middle">register</text>
+<rect x="526" y="238" width="95" height="95" rx="10" class="block"/>
+<text x="573.5" y="273" class="label" text-anchor="middle">PE(1,2)</text>
+<text x="573.5" y="296" class="small" text-anchor="middle">weight</text>
+<text x="573.5" y="314" class="small" text-anchor="middle">register</text>
+<rect x="639" y="238" width="95" height="95" rx="10" class="block"/>
+<text x="686.5" y="273" class="label" text-anchor="middle">PE(1,3)</text>
+<text x="686.5" y="296" class="small" text-anchor="middle">weight</text>
+<text x="686.5" y="314" class="small" text-anchor="middle">register</text>
+<rect x="300" y="351" width="95" height="95" rx="10" class="block"/>
+<text x="347.5" y="386" class="label" text-anchor="middle">PE(2,0)</text>
+<text x="347.5" y="409" class="small" text-anchor="middle">weight</text>
+<text x="347.5" y="427" class="small" text-anchor="middle">register</text>
+<rect x="413" y="351" width="95" height="95" rx="10" class="block"/>
+<text x="460.5" y="386" class="label" text-anchor="middle">PE(2,1)</text>
+<text x="460.5" y="409" class="small" text-anchor="middle">weight</text>
+<text x="460.5" y="427" class="small" text-anchor="middle">register</text>
+<rect x="526" y="351" width="95" height="95" rx="10" class="block"/>
+<text x="573.5" y="386" class="label" text-anchor="middle">PE(2,2)</text>
+<text x="573.5" y="409" class="small" text-anchor="middle">weight</text>
+<text x="573.5" y="427" class="small" text-anchor="middle">register</text>
+<rect x="639" y="351" width="95" height="95" rx="10" class="block"/>
+<text x="686.5" y="386" class="label" text-anchor="middle">PE(2,3)</text>
+<text x="686.5" y="409" class="small" text-anchor="middle">weight</text>
+<text x="686.5" y="427" class="small" text-anchor="middle">register</text>
+<rect x="300" y="464" width="95" height="95" rx="10" class="block"/>
+<text x="347.5" y="499" class="label" text-anchor="middle">PE(3,0)</text>
+<text x="347.5" y="522" class="small" text-anchor="middle">weight</text>
+<text x="347.5" y="540" class="small" text-anchor="middle">register</text>
+<rect x="413" y="464" width="95" height="95" rx="10" class="block"/>
+<text x="460.5" y="499" class="label" text-anchor="middle">PE(3,1)</text>
+<text x="460.5" y="522" class="small" text-anchor="middle">weight</text>
+<text x="460.5" y="540" class="small" text-anchor="middle">register</text>
+<rect x="526" y="464" width="95" height="95" rx="10" class="block"/>
+<text x="573.5" y="499" class="label" text-anchor="middle">PE(3,2)</text>
+<text x="573.5" y="522" class="small" text-anchor="middle">weight</text>
+<text x="573.5" y="540" class="small" text-anchor="middle">register</text>
+<rect x="639" y="464" width="95" height="95" rx="10" class="block"/>
+<text x="686.5" y="499" class="label" text-anchor="middle">PE(3,3)</text>
+<text x="686.5" y="522" class="small" text-anchor="middle">weight</text>
+<text x="686.5" y="540" class="small" text-anchor="middle">register</text>
+<path d="M395 172.5 H413" class="dataArrow"/>
+<path d="M508 172.5 H526" class="dataArrow"/>
+<path d="M621 172.5 H639" class="dataArrow"/>
+<path d="M395 285.5 H413" class="dataArrow"/>
+<path d="M508 285.5 H526" class="dataArrow"/>
+<path d="M621 285.5 H639" class="dataArrow"/>
+<path d="M395 398.5 H413" class="dataArrow"/>
+<path d="M508 398.5 H526" class="dataArrow"/>
+<path d="M621 398.5 H639" class="dataArrow"/>
+<path d="M395 511.5 H413" class="dataArrow"/>
+<path d="M508 511.5 H526" class="dataArrow"/>
+<path d="M621 511.5 H639" class="dataArrow"/>
+<path d="M347.5 220 V238" class="controlArrow"/>
+<path d="M460.5 220 V238" class="controlArrow"/>
+<path d="M573.5 220 V238" class="controlArrow"/>
+<path d="M686.5 220 V238" class="controlArrow"/>
+<path d="M347.5 333 V351" class="controlArrow"/>
+<path d="M460.5 333 V351" class="controlArrow"/>
+<path d="M573.5 333 V351" class="controlArrow"/>
+<path d="M686.5 333 V351" class="controlArrow"/>
+<path d="M347.5 446 V464" class="controlArrow"/>
+<path d="M460.5 446 V464" class="controlArrow"/>
+<path d="M573.5 446 V464" class="controlArrow"/>
+<path d="M686.5 446 V464" class="controlArrow"/>
+<text x="500" y="615" class="small" text-anchor="middle">Illustrative grid only: finalize arrow meaning/direction and partial-sum topology in the cycle schedule.</text>
+</svg>

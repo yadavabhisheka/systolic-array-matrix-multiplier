@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2864a5"/></marker><marker id="carrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#9a5b00"/></marker></defs>
+<style>
+.title{font: bold 24px Arial,sans-serif;fill:#172b4d} .heading{font:bold 19px Arial,sans-serif;fill:#172b4d}
+.label{font:bold 15px Arial,sans-serif;fill:#172b4d} .small{font:12px Arial,sans-serif;fill:#334155}
+.block{fill:#fff;stroke:#52749b;stroke-width:2} .ps{fill:#edf5ff;stroke:#6d91bd;stroke-width:2}
+.pl{fill:#f0f8f1;stroke:#6c9c79;stroke-width:2} .dataArrow{fill:none;stroke:#2864a5;stroke-width:2.5;marker-end:url(#arrow)}
+.controlArrow{fill:none;stroke:#9a5b00;stroke-width:2.5;marker-end:url(#carrow)} .header{fill:#dce8f5;stroke:#9aaec4}
+.cell{fill:#fff;stroke:#b8c4d1}
+</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+
+<text x="600" y="35" class="title" text-anchor="middle">Zynq-7000 Systolic Array Accelerator — Planned Architecture</text>
+<rect x="35" y="65" width="1130" height="235" rx="18" class="ps"/>
+<text x="600" y="98" class="heading" text-anchor="middle">Processing System (PS)</text>
+<rect x="80" y="125" width="270" height="105" class="block"/><text x="215" y="165" class="label" text-anchor="middle">ARM Cortex-A9</text><text x="215" y="190" class="small" text-anchor="middle">Bare-metal C application</text>
+<rect x="465" y="125" width="270" height="105" class="block"/><text x="600" y="165" class="label" text-anchor="middle">DDR memory</text><text x="600" y="190" class="small" text-anchor="middle">A, W and C buffers</text>
+<rect x="850" y="125" width="270" height="105" class="block"/><text x="985" y="165" class="label" text-anchor="middle">PS peripherals</text><text x="985" y="190" class="small" text-anchor="middle">UART / platform</text>
+<rect x="35" y="360" width="1130" height="300" rx="18" class="pl"/>
+<text x="600" y="393" class="heading" text-anchor="middle">Programmable Logic (PL)</text>
+<rect x="65" y="435" width="210" height="95" class="block"/><text x="170" y="470" class="label" text-anchor="middle">AXI4-Lite</text><text x="170" y="493" class="small" text-anchor="middle">Control registers</text>
+<rect x="325" y="435" width="210" height="95" class="block"/><text x="430" y="470" class="label" text-anchor="middle">AXI DMA</text><text x="430" y="493" class="small" text-anchor="middle">MM2S / S2MM</text>
+<rect x="585" y="435" width="210" height="95" class="block"/><text x="690" y="470" class="label" text-anchor="middle">Stream buffers</text><text x="690" y="493" class="small" text-anchor="middle">Input / output</text>
+<rect x="845" y="435" width="275" height="95" class="block"/><text x="982" y="470" class="label" text-anchor="middle">4×4 systolic array</text><text x="982" y="493" class="small" text-anchor="middle">16 weight-stationary PEs</text>
+<path d="M215 230 V330 H170 V435" class="controlArrow"/><text x="185" y="325" class="small">control</text>
+<path d="M600 230 V335 H430 V435" class="dataArrow"/><text x="515" y="325" class="small">DDR data</text>
+<path d="M535 482 H585" class="dataArrow"/><path d="M795 482 H845" class="dataArrow"/>
+<text x="600" y="590" class="small" text-anchor="middle">Conceptual only: finalize ports, clocks, resets, and data schedule in the implemented design.</text>
+
+</svg>
