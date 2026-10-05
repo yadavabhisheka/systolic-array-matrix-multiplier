@@ -38,8 +38,8 @@
 ---
 
 ## 1. Overview
-![Overview of full architecture ](docs/architecture.png)
 
+![Overview of full architecture](docs/architecture.png)
 
 Matrix multiplication is a fundamental operation in digital signal processing, computer vision, and machine-learning workloads. A CPU can compute a matrix product sequentially; a hardware accelerator can exploit parallel multiply-accumulate (MAC) operations.
 
@@ -58,7 +58,6 @@ The project spans the complete hardware/software path:
 9. Validate the accelerator on the target board and report correctness, latency, throughput, and FPGA resource use.
 
 The existing C++ golden model provides **mathematical expected results**. It does not model PE timing, AXI transactions, DMA behavior, or FPGA implementation. A Python companion may later be added for vector generation and additional verification workflows.
-
 
 ### Project summary
 
@@ -156,25 +155,25 @@ The existing C++ golden model provides **mathematical expected results**. It doe
 ┌─────────────────────────────────────────────────────────────┐
 │ Processing System (PS)                                      │
 │  ARM Cortex-A9 ── Bare-metal C application                  │
-│        │ AXI4-Lite control          │ Input/output buffers  │
-│        ▼                            ▼                       │
-│  Accelerator registers             DDR memory               │
-└───────────────┬────────────────────────────┬────────────────┘
-                │ Control                    │ Memory access
-                ▼                            ▼
+│           │ AXI4-Lite control       │ Input/output buffers  │
+│           ▼                         ▼                       │
+│  Accelerator registers          DDR memory                  │
+└───────────┬─────────────────────────┬───────────────────────┘
+            │ Control                 │ Memory access
+            ▼                         ▼
 ┌─────────────────────────────────────────────────────────────┐
 │ Programmable Logic (PL)                                     │
-│  AXI4-Lite registers                AXI DMA                 │
-│        │                       MM2S ──►  │  ◄── S2MM         │
-│        ▼                                AXI4-Stream          │
-│  Accelerator controller                    │                │
-│                                     Input/weight handling   │
-│                                             │               │
-│                                     4×4 systolic array      │
-│                                             │               │
-│                                      Output collector      │
-│                                             │               │
-│                                         AXI4-Stream         │
+│  AXI4-Lite registers             AXI DMA                    │
+│           │               MM2S ──►  │  ◄── S2MM             │
+│           ▼                    AXI4-Stream                  │
+│  Accelerator controller             │                       │
+│                           Input/weight handling             │
+│                                     │                       │
+│                            4×4 systolic array               │
+│                                     │                       │
+│                             Output collector                │
+│                                     │                       │
+│                                AXI4-Stream                  │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -198,15 +197,13 @@ The intended architecture avoids writing every matrix element through AXI4-Lite 
 
 For compatible matrices:
 
-\[
-A \in \mathbb{Z}^{M\times K},\quad
-W \in \mathbb{Z}^{K\times N},\quad
-C \in \mathbb{Z}^{M\times N}
-\]
+$$
+A \in \mathbb{Z}^{M\times K},\quad W \in \mathbb{Z}^{K\times N},\quad C \in \mathbb{Z}^{M\times N}
+$$
 
-\[
-C[i][j]=\sum_{k=0}^{K-1} A[i][k]\,W[k][j]
-\]
+$$
+C[i][j] = \sum_{k=0}^{K-1} A[i][k]\,W[k][j]
+$$
 
 The dimension constraint is `A.columns == W.rows`.
 
@@ -300,8 +297,8 @@ The producer must preserve the current beat while stalled. The design specificat
 
 ```text
 IDLE → LOAD_WEIGHTS → PREPARE → COMPUTE → DRAIN → DONE
-  ↑                                                    │
-  └──────────────────── next transaction ─────────────┘
+  ↑                                                 │
+  └─────────────── next transaction ────────────────┘
 ```
 
 This is a conceptual FSM only. State encoding, error recovery, and the exact meaning of `DONE` must be specified before implementation.
@@ -414,7 +411,7 @@ Use it for known-answer, boundary, deterministic-random, RTL, and board-level ch
 ## 8. Repository layout
 
 ```text
-systolic-array-accelerator/
+systolic-array-matrix-multiplier/
 ├── README.md
 ├── LICENSE
 ├── .gitignore
@@ -445,10 +442,11 @@ systolic-array-accelerator/
 │   ├── constraints/
 │   ├── ip/
 │   └── README.md
+├── scripts/
 ├── tests/
 │   ├── vectors/
 │   └── expected/
-└── doc/
+└── docs/
     ├── architecture/
     ├── specifications/
     ├── reports/
@@ -466,6 +464,7 @@ systolic-array-accelerator/
 - `verification/`: testbench, UVM, assertions, coverage, regression scripts.
 - `ps_software/`: ARM-side C application.
 - `vivado/`: hardware design notes, constraints, and project guidance.
+- `scripts/`: regression and build helper scripts.
 - `tests/`: shared vectors and expected results.
 - `docs/architecture/`: architecture decisions and diagrams.
 - `docs/specifications/`: timing, interface, register, and stream contracts.
@@ -796,12 +795,12 @@ Define the start/end events, dimensions, clock frequency, and timing boundary fo
 
 ## 15. Diagrams, screenshots, and evidence
 
-Keep project-created figures and screenshots under `doc/resources/`. Prefer original diagrams. If an external figure or code sample is reused, record its source and license/permission status in `doc/resources/papers/references.md`.
+Keep project-created figures and screenshots under `docs/resources/`. Prefer original diagrams. If an external figure or code sample is reused, record its source and license/permission status in `docs/resources/papers/references.md`.
 
 ### Resource folders
 
 ```text
-doc/resources/
+docs/resources/
 ├── diagrams/   # Architecture, PE, array, dataflow, timing
 ├── waveforms/  # Representative simulation waveforms
 ├── vivado/     # Block design, address editor, timing/resource reports
@@ -813,12 +812,12 @@ doc/resources/
 
 | File | What to capture |
 |---|---|
-| `diagrams/system_architecture.png` | PS, PL, DDR, DMA, AXI and accelerator |
-| `diagrams/pe_block_diagram.png` | PE ports, weight register, multiplier, accumulator |
-| `diagrams/systolic_array_4x4.png` | 16 PEs and connections |
-| `diagrams/weight_stationary_dataflow.png` | Weight/activation/partial-sum movement |
-| `diagrams/cycle_schedule.png` | Cycle-by-cycle schedule |
-| `diagrams/axi_dataflow.png` | AXI-Lite control and AXI-Stream payload |
+| `diagrams/system_architecture.svg` | PS, PL, DDR, DMA, AXI and accelerator |
+| `diagrams/pe_block_diagram.svg` | PE ports, weight register, multiplier, accumulator |
+| `diagrams/systolic_array_4x4.svg` | 16 PEs and connections |
+| `diagrams/weight_stationary_dataflow.svg` | Weight/activation/partial-sum movement |
+| `diagrams/cycle_schedule.svg` | Cycle-by-cycle schedule |
+| `diagrams/axi_dataflow.svg` | AXI-Lite control and AXI-Stream payload |
 | `waveforms/pe_mac_waveform.png` | PE arithmetic and valid timing |
 | `waveforms/array_known_answer_waveform.png` | Array computation/output timing |
 | `waveforms/axi_stream_backpressure.png` | Stall and handshake behavior |
