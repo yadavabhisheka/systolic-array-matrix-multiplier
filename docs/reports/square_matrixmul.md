@@ -714,7 +714,7 @@ terminate called after throwing an instance of 'std::out_of_range'
 status
  PASS
 ```
-### Observation
+### Final Observation
 ```text
  Matrix multiplication was tested using matrices of different sizes and input values, including positive, negative, mixed-sign, identity matrix, and out-of-range input cases. The test results were compared with the expected outputs to verify the correctness of the C++ golden model. All test cases passed, including the invalid-input tests, which behaved as expected.. 
 
