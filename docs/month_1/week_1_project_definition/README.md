@@ -21,6 +21,7 @@ Let
 $$
 A \in \mathbb{R}^{M \times K}, \qquad B \in \mathbb{R}^{K \times N}
 $$
+
 Then
 
 $$
@@ -35,43 +36,40 @@ $$
 
 For example,
 
-$$
-\begin{bmatrix}1&2\\3&4\end{bmatrix}
-\begin{bmatrix}5&6\\7&8\end{bmatrix}
+```math
+\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}
+\times
+\begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}
 =
-\begin{bmatrix}19&22\\43&50\end{bmatrix}
-$$
+\begin{bmatrix} 19 & 22 \\ 43 & 50 \end{bmatrix}
+```
 
-The project baseline uses $(C=A\times W)$, where $A$ is the input/activation matrix and $W$ is the weight matrix. Other sources may call the second matrix $B$. Choose one notation and use it consistently.
+The project baseline uses $C=A\times W$, where $A$ is the input/activation matrix and $W$ is the weight matrix. Other sources may call the second matrix $B$. Choose one notation and use it consistently.
 
 **How does computational work grow with matrix dimensions?**
 
-For conventional multiplication of an $(M\times K)$ matrix by a $(K\times N)$ matrix:
+For conventional multiplication of an $M\times K$ matrix by a $K\times N$ matrix:
 
-- Multiplications: $(MNK)$.
-- Additions: $(MN(K-1))$, assuming each dot product starts with its first product and adds the remaining products.
-- Total arithmetic operations under this convention: $(MN(2K-1))$.
+- Multiplications: $MNK$.
+- Additions: $MN(K-1)$, assuming each dot product starts with its first product and adds the remaining products.
+- Total arithmetic operations under this convention: $MN(2K-1)$.
 
-For square $(N\times N)$ matrices, the conventional operation count grows approximately as $(2N^3)$. This helps explain why large matrix products can be demanding. Operation count alone does not determine execution time; implementation, parallelism, memory traffic, numerical precision, and processor architecture also matter.
+For square $N\times N$ matrices, the conventional operation count grows approximately as $2N^3$. This helps explain why large matrix products can be demanding. Operation count alone does not determine execution time; implementation, parallelism, memory traffic, numerical precision, and processor architecture also matter.
 
 A 4×4 product requires 64 multiplications and 48 additions, or 112 arithmetic operations by this counting convention. This is not the number of clock cycles required by an implementation.
 
 **Why are data reuse and accumulation important?**
 
-Matrix multiplication reuses values. Each element of $(A)$ contributes to multiple output columns, while each element of $(W)$ contributes to multiple output rows. Retaining values near the processing units can reduce repeated transfers from distant memory.
+Matrix multiplication reuses values. Each element of $A$ contributes to multiple output columns, while each element of $W$ contributes to multiple output rows. Retaining values near the processing units can reduce repeated transfers from distant memory.
 
 Each output also requires a sum of products. Hardware must calculate products with correct signedness and width, combine partial sums correctly, and ensure that each sum belongs to the right output. Accumulator width, initialization, overflow behavior, data alignment, and timing are part of the arithmetic contract.
 
 #### B. Real-world applications to investigate
 
-- **AI/ML:** Dense neural-network layers multiply activations by weight matrices. Matrix multiplication also appears in transformer projections and attention. Convolutions can sometimes be transformed into matrix multiplication, but not every implementation uses that transformation.  
-    
-- **Image processing and computer vision:** Feature extraction, transformations, and neural-network vision pipelines use matrix operations. A small Sobel edge detector is normally a local filter; it should not be described as necessarily requiring a large matrix-multiplication engine.  
-  
-- **Scientific and engineering computing:** Dense linear algebra appears in numerical simulation, transformations, and solving or analyzing systems of equations.  
-  
-- **Signal processing and communications:** Matrix operations appear in MIMO communications, beamforming, channel estimation, and signal transformations. Some workloads are complex-valued or structured.  
-  
+- **AI/ML:** Dense neural-network layers multiply activations by weight matrices. Matrix multiplication also appears in transformer projections and attention. Convolutions can sometimes be transformed into matrix multiplication, but not every implementation uses that transformation.
+- **Image processing and computer vision:** Feature extraction, transformations, and neural-network vision pipelines use matrix operations. A small Sobel edge detector is normally a local filter; it should not be described as necessarily requiring a large matrix-multiplication engine.
+- **Scientific and engineering computing:** Dense linear algebra appears in numerical simulation, transformations, and solving or analyzing systems of equations.
+- **Signal processing and communications:** Matrix operations appear in MIMO communications, beamforming, channel estimation, and signal transformations. Some workloads are complex-valued or structured.
 - **Robotics, graphics, and sensor processing:** Coordinate transformations, state estimation, and some sensor-fusion algorithms use matrix or matrix-vector operations. These may involve small matrices, where accelerator overhead matters.
 
 Research questions:
@@ -102,12 +100,9 @@ For this project, arithmetic performance alone will not establish end-to-end ben
 
 A conceptual timing model is
 
-$$
-T_{\mathrm{total}} =
-T_{\mathrm{setup}} + T_{\mathrm{input}} +
-T_{\mathrm{compute}} + T_{\mathrm{output}} +
-T_{\mathrm{software}}
-$$
+```math
+T_{\mathrm{total}} = T_{\mathrm{setup}} + T_{\mathrm{input}} + T_{\mathrm{compute}} + T_{\mathrm{output}} + T_{\mathrm{software}}
+```
 
 This is an accounting model, not a guarantee that all stages are sequential; some may overlap. Final metrics must state exactly what is included.
 
@@ -130,6 +125,7 @@ This is an accounting model, not a guarantee that all stages are sequential; som
 ### Question 2 — What is a hardware accelerator, what types exist, and what makes one useful?
 
 Investigate:
+
 - Differences between CPUs, GPUs, FPGA-based accelerators, and fixed-function ASICs.
 - General-purpose computing versus domain-specific hardware.
 - How parallelism, specialization, reuse, memory bandwidth, and workload regularity affect performance.
@@ -138,6 +134,7 @@ Investigate:
 - What evidence demonstrates usefulness for a particular workload.
 
 Starting sources:
+
 1. Jouppi et al., TPU paper (2017): https://arxiv.org/abs/1704.04760
 2. NVIDIA Deep Learning Accelerator (NVDLA): https://nvdla.org/
 3. NVDLA hardware architecture: https://nvdla.org/hw/v1/hwarch.html
@@ -168,7 +165,6 @@ Investigate:
 Starting sources:
 
 1. H. T. Kung, “Why Systolic Architectures?” (1982). Verify the exact bibliographic details before citing.
-
    - Author publication page: https://www.eecs.harvard.edu/htk/publications/
 2. Asgari, Hadidi, and Kim, “MEISSA: Multiplying Matrices Efficiently in a Scalable Systolic Architecture” (ICCD 2020). The work proposes a stationary systolic architecture that separates multipliers from adders and evaluates it on a Zynq XC7Z020.
    - Author-hosted paper: https://www.cs.umd.edu/~bahar/papers/asgari-iccd20.pdf
@@ -176,6 +172,7 @@ Starting sources:
 3. Huang et al., MALMM (2018): https://www.jstage.jst.go.jp/article/elex/15/10/15_20180286/_article/-char/en
 
 Project questions:
+
 - Is a conventional MAC systolic array the right baseline?
 - Which alternatives are feasible on our FPGA and timeline?
 - How should latency, throughput, resources, and verification complexity be compared?
@@ -205,6 +202,7 @@ Starting sources:
 3. TPU paper (2017): https://arxiv.org/abs/1704.04760
 
 Project questions:
+
 - What should each PE store, and when is it loaded?
 - How are activations delivered and partial sums produced?
 - What mapping from matrix indices to PE coordinates is intended?
@@ -325,7 +323,7 @@ Project questions:
 - Inputs and weights: signed INT8.
 - Product width: INT16.
 - Accumulation/output width: INT32.
-- Operation: $(C=A\times W)$.
+- Operation: $C=A\times W$.
 
 Investigate:
 
